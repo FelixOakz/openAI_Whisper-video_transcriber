@@ -28,3 +28,6 @@ def videoToAudio(video_path):
 
 
 main()
+
+
+# need to add diarization with py lib
