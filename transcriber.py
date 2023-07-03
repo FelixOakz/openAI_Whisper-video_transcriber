@@ -1,5 +1,5 @@
 from moviepy.editor import VideoFileClip
-from pyannote.audio import Transcriptor
+from pyannote.audio import Pipeline
 import whisper
 import time
 
@@ -21,9 +21,12 @@ def whisper_transcription(audio_path):
 
 
 def audioToText(audio_path):
-    transcriptor = Transcriptor()
-    result = transcriptor(audio_path)
-    print(result.text)
+    pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization")
+    diarization = pipeline(audio_path)
+
+    print("Pyannote speaker diarization:")
+    for turn, _, speaker in diarization.itertracks(yield_label=True):
+        print(f"start={turn.start:.1f}s stop={turn.end:.1f}s speaker_{speaker}")
 
 
 def videoToAudio(video_path):
@@ -35,6 +38,3 @@ def videoToAudio(video_path):
 
 
 main()
-
-
-# need to add diarization with py lib
