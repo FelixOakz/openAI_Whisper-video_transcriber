@@ -5,7 +5,7 @@ import time
 
 def main():
     start_time = time.time()
-    audio_path = videoToAudio("video_test.mp4")
+    audio_path = videoToAudio("video.mp4")
     audioToText(audio_path)
     whisper_transcription(audio_path)
 
