@@ -5,7 +5,7 @@ import time
 
 def main():
     start_time = time.time()
-    videoToAudio("video.mp4")
+    videoToAudio("video_pao.mp4")
     audioToText("audio.wav")
 
     elapsed_time = time.time() - start_time
